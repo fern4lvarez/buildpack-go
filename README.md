@@ -1,6 +1,6 @@
-# Heroku Buildpack: Go
+# Go Buildpack
 
-This is a [Heroku buildpack][buildpack] for [Go][go].
+This is a [Heroku buildpack][buildpack]'s fork for [Go][go].
 
 ## Getting Started
 
@@ -19,39 +19,31 @@ $ ls -A1
 ./Procfile
 ./web.go
 
-$ heroku create -b https://github.com/kr/heroku-buildpack-go.git
+$ cctrlapp APP_NAME create custom --buildpack https://github.com/fern4lvarez/buildpack-go.git
 ...
 
-$ git push heroku master
+$ cctrlapp APP_NAME/default push
 ...
------> Fetching custom git buildpack... done
------> Go app detected
+-----> Receiving push
+-----> Custom buildpack provided
 -----> Installing Go 1.0.3... done
-       Installing Virtualenv... done
-       Installing Mercurial... done
-       Installing Bazaar... done
------> Running: go get -tags heroku ./...
------> Discovering process types
-       Procfile declares types -> web
------> Compiled slug size: 1.0MB
------> Launching... done, v5
-       http://pure-sunrise-3607.herokuapp.com deployed to Heroku
+-----> Running: go get -tags cctrl ./...
+-----> Building image
+-----> Uploading image (1.1M)
+
+
+$ cctrlapp APP_NAME/default deploy
 ```
+
 
 The buildpack will detect your repository as Go if it
 contains a `.go` file.
-
-The buildpack adds a `heroku` [build constraint][build-constraint],
-to enable heroku-specific code. See the [App Engine build constraints article][app-engine-build-constraints]
-for more.
 
 ## Hacking on this Buildpack
 
 To change this buildpack, fork it on GitHub. Push
 changes to your fork, then create a test app with
-`--buildpack YOUR_GITHUB_GIT_URL` and push to it. If you
-already have an existing app you may use `heroku config:add
-BUILDPACK_URL=YOUR_GITHUB_GIT_URL` instead of `--buildpack`.
+`--buildpack YOUR_GITHUB_GIT_URL` and push to it.
 
 [go]: http://golang.org/
 [buildpack]: http://devcenter.heroku.com/articles/buildpacks
