@@ -26,7 +26,7 @@ $ cctrlapp APP_NAME/default push
 ...
 -----> Receiving push
 -----> Custom buildpack provided
------> Installing Go 1.0.3... done
+-----> Installing Go 1.1.1... done
 -----> Running: go get -tags cctrl ./...
 -----> Building image
 -----> Uploading image (1.1M)
