@@ -49,7 +49,7 @@ else
 fi
 
 GOROOT=$cache/go-$ver/go export GOROOT
-GOPATH=$build/.heroku/g export GOPATH
+GOPATH=$build/.gopath/g export GOPATH
 PATH=$GOROOT/bin:$PATH
 
 
@@ -75,13 +75,13 @@ mkdir -p $p
 cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
-echo "-----> Running: go get -tags heroku ./..."
+echo "-----> Running: go get -tags cctrl ./..."
 cd $p
-go get -tags heroku ./...
+go get -tags cctrl ./...
 
 mkdir -p $build/bin
 mv $GOPATH/bin/* $build/bin
-rm -rf $build/.heroku
+rm -rf $build/.gopath
 
 mkdir -p $build/.profile.d
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
